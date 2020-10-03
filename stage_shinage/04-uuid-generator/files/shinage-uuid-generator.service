@@ -1,0 +1,10 @@
+[Unit]
+Description=Shinage UUID generator
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/sbin/shinage-uuid-generator.sh
+
+[Install]
+WantedBy=multi-user.target

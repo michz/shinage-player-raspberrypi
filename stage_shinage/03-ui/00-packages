@@ -1,0 +1,17 @@
+git
+bash
+imagemagick
+ca-certificates
+unzip
+sudo
+eject
+hdparm
+unclutter
+xinit
+xserver-xorg
+x11-xserver-utils
+xserver-xorg-video-fbturbo
+matchbox
+scrot
+imagemagick
+chromium-browser
