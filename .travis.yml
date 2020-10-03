@@ -3,6 +3,10 @@ language: ruby
 services:
   - docker
 
+branches:
+  only:
+  - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
+
 script:
   - sudo ./build.sh
   - ls -la . || true
@@ -16,7 +20,7 @@ deploy:
   api_key:
     secure: "P0HCNi09eGQrWhO8QQSPqo9bY7eLEMZqGc1U5/vB2BmCdGDoBG6RmhvJCXFxpJnbcZc/RrlUP+4DvzMgc357dLfkD0FJGOqjw8QWLuiNWlu9BMBK080fM7iwgru2r7z+gx5p855qKC9nm/+dCc9i1PZauTGjKeW+0TUnp0hDLSGa/vEEX4FvE9A4cQMxgKGyFNpyUT48C4WIC/UrSuDlxtk8zdj1tl/U4prv/KdDC4nmX4N3ZCRlPOQk1pPxNuDaF4K7fCqA0ZLyb+h0DI6b1zs2Cqi1qrK0bz+K+Itd88+oQ/LsqtPCau6EnTiTXLv1D3V0z83Dq08qECie0vk7gaZG3R3JMccHO3GgXvdqUPPjMQXhO1TFecWDPSbakcTEfZ+iidUTfCg0ieF3hffNZ3FWurPnvVKwiALv+IoVLN1108qo4rTV9z58LHQ4CojIeQOZ3bjA6ljHo1ODXS06nWdD5Xp4r95/LuHqZhN3aZiqFgIul7e3VqIl4HkwuQxZk2NQj4VYkiLTTiP2TeHy3DzKHw3dQcoDiD+ZeS6z+D3gaM6KloEqZkQBncWREOzsEMFujNpa7zs6KkOJ9uQ7fiMXAJEMplgX96dDaImm+o68kMEMEztP4eKMKwnC9lNbhAXuuiZhgOQmwWw6MvVYlYdNJtTgDmPYJ9IuZS1Fj1A="
   file_glob: true
-  file: "pi-gen/deploy/*"
+  file: pi-gen/deploy/*
   skip_cleanup: true
   draft: true
   on:
