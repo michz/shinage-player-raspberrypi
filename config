@@ -27,11 +27,11 @@ IMG_NAME=shinageplayer
 # (Default: "$BASE_DIR/deploy")
 # Output directory for target system images and NOOBS bundles.
 
-DEPLOY_ZIP=0
+#DEPLOY_ZIP=1
 # (Default: 1)
 # Setting to 0 will deploy the actual image (.img) instead of a zipped image (.zip).
 
-USE_QEMU=0
+#USE_QEMU=0
 # (Default: "0")
 # Setting to '1' enables the QEMU mode - creating an image that can be mounted via QEMU for an emulated environment. These images include "-qemu" in the image file name.
 
