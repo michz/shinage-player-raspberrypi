@@ -1,0 +1,12 @@
+language: ruby
+
+services:
+  - docker
+
+script:
+  - sudo ./build.sh
+  - ls -la . || true
+  - ls -la ./pi-gen || true
+  - ls -la ./pi-gen/work || true
+  - ls -la ./pi-gen/work/* || true
+  - ls -la ./pi-gen/deploy || true
