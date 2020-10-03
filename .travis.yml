@@ -19,5 +19,5 @@ deploy:
   file: "pi-gen/deploy/*"
   skip_cleanup: true
   draft: true
-#  on:
-#    tags: true
+  on:
+    tags: true
