@@ -1,0 +1,3 @@
+SHELL=/bin/bash
+
+* *  * * *     root     set -a ; source /boot/shinage.conf ; set +a ; /usr/bin/python3 /usr/local/sbin/shinage_heartbeat.py
