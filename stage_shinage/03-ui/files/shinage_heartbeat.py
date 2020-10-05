@@ -4,23 +4,23 @@ import json
 import os
 import requests
 
-def command_noop():
+def command_noop(arguments):
     print("NOOP")
 
-def command_restart_browser():
+def command_restart_browser(arguments):
     os.system("/usr/bin/killall /usr/lib/chromium-browser/chromium-browser-v7")
 
-def command_reboot():
+def command_reboot(arguments):
     os.system("/usr/sbin/reboot")
 
-def map_and_execute_command(argument):
+def map_and_execute_command(command, arguments):
     commands = {
         'noop': command_noop,
         'restart_browser': command_restart_browser,
         'reboot': command_reboot,
     }
-    func = commands.get(argument, lambda: print("Invalid command given."))
-    func()
+    func = commands.get(command, lambda: print("Invalid command given."))
+    func(arguments)
 
 
 baseUrl = os.getenv('SHINAGE_SERVER_BASE_URL', None)
@@ -39,7 +39,7 @@ if r.status_code == 200:
     # command was returned, try to parse
     parsed = json.loads(r.text)
     if 'command' in parsed:
-        map_and_execute_command(parsed["command"]["command"])
+        map_and_execute_command(parsed["command"]["command"], parsed["command"]["arguments"])
     else:
         print("'command' field missing in response. Using the wrong api?")
         exit(2)
