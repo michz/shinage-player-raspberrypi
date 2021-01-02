@@ -16,8 +16,11 @@ xset s off
 xset -dpms
 xset s noblank
 
-/usr/bin/chromium-browser --noerrdialogs --incognito --disable-translate \
-    --disable-translate-new-ux --disk-cache-size=0 \
+/usr/bin/chromium-browser --noerrdialogs --incognito \
+    --disable-translate \
+    --disable-translate-new-ux \
+    --disable-features=TranslateUI \
+    --disk-cache-size=0 \
     --no-first-run --force-device-scale-factor=1 \
     --user-data-dir=/tmp/chromium/ --disk-cache-dir=/tmp/chromium/ \
     --disk-cache-size=$((1024 * 1024)) --disable-java --disable-plugins $SHINAGE_CHROMIUMPARAMETERS \
