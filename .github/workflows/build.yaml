@@ -1,0 +1,52 @@
+name: Build
+on:
+  push: ~
+
+jobs:
+  build:
+    # @TODO enable condition
+    #if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Run pi-gen build script
+        run: sudo ./build.sh
+
+      - name: Some debug/informational output
+        run: |
+          ls -la . || true &&
+          ls -la ./pi-gen || true &&
+          ls -la ./pi-gen/work || true &&
+          ls -la ./pi-gen/work/* || true &&
+          ls -la ./pi-gen/deploy || true
+
+      - name: Get zip filename
+        id: get-filename
+        run: echo ::set-output name=outfilename::$(ls ./pi-gen/deploy/image*.zip)
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          body: ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ steps.get-filename.outputs.outfilename }}
+          asset_name: shinage-player-raspberry-sd-image.zip
+          asset_content_type: application/zip
