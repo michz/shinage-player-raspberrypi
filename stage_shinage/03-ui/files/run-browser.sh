@@ -19,7 +19,7 @@ xset s noblank
 /usr/bin/chromium-browser --noerrdialogs --incognito \
     --disable-translate \
     --disable-translate-new-ux \
-    --disable-features=TranslateUI \
+    --disable-features=Translate \
     --disk-cache-size=0 \
     --no-first-run --force-device-scale-factor=1 \
     --user-data-dir=/tmp/chromium/ --disk-cache-dir=/tmp/chromium/ \
