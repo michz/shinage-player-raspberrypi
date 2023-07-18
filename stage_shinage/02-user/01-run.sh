@@ -15,11 +15,11 @@ install -m 755 files/.profile           "${ROOTFS_DIR}/home/${KIOSK_USER_NAME}/"
 install -m 755 files/.xsession          "${ROOTFS_DIR}/home/${KIOSK_USER_NAME}/"
 
 # Autologin
-install -m 644 files/getty@tty1.service "${ROOTFS_DIR}/etc/systemd/system/"
+install -m 755 -d="${ROOTFS_DIR}/etc/systemd/system/getty@tty1.service.d"
+install -m 644 files/getty-override.conf "${ROOTFS_DIR}/etc/systemd/system/getty@tty1.service.d/override.conf"
 
 on_chroot <<EOF
 # Enable automatic login shell
-rm -f "${ROOTFS_DIR}/etc/systemd/system/getty.target.wants/getty@tty1.service"
 systemctl daemon-reload
 systemctl enable getty@tty1.service
 
